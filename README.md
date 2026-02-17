@@ -1,17 +1,23 @@
-## Training Registration System
-ระบบสำหรับลงทะเบียนเข้าร่วมการอบรม โดยรองรับ
+# Training Registration System
 
-- นักศึกษา
-- อาจารย์
-- บุคคลทั่วไป
-- วิทยากร
+## Project Description
 
-ระบบสามารถ:
-- ลงทะเบียนข้อมูลผู้เข้าอบรม
-- แสดงรายชื่อผู้เข้าอบรม
-- แสดงรายชื่อวิทยากร
+ระบบสำหรับลงทะเบียนเข้าร่วมการอบรม โดยรองรับผู้ใช้งาน 3 ประเภท ได้แก่
 
+- นักศึกษา (Student)
+- อาจารย์ (Teacher)
+- บุคคลทั่วไป (General Person)
 
+ระบบจะเก็บข้อมูลพื้นฐานของผู้สมัคร ได้แก่ ชื่อ นามสกุล เบอร์โทรศัพท์ และอีเมล
+
+ความสามารถของระบบ:
+
+- นักศึกษา อาจารย์ และบุคคลทั่วไป สามารถลงทะเบียนอบรมได้
+- อาจารย์ และบุคคลทั่วไป สามารถเป็นวิทยากรได้
+- วิทยากรสามารถอบรมและอนุมัติผลการอบรมได้
+- แสดงรายชื่อผู้เข้าอบรมและวิทยากรได้
+
+---
 
 ## Class Diagram
 
@@ -32,12 +38,44 @@ class IRegistrable{
     +RegisterTraining()
 }
 
+class ISpeaker{
+    <<interface>>
+    +ConductTraining()
+    +ApproveResult()
+}
 
+class Student{
+    +StudentId : string
+    +Major : string
+    +RegisterTraining()
+    +ShowInfo()
+}
 
-## Class Description
-- **Person (Abstract Class)** : เก็บข้อมูลพื้นฐานของผู้สมัคร
-- **Student** : ผู้สมัครประเภทนักศึกษา
-- **Teacher** : ผู้สมัครประเภทอาจารย์ และสามารถเป็นวิทยากรได้
-- **GeneralPerson** : บุคคลทั่วไป และสามารถเป็นวิทยากรได้
-- **IRegistrable** : ความสามารถในการลงทะเบียนอบรม
-- **ISpeaker** : ความสามารถในการเป็นวิทยากร
+class Teacher{
+    +Major : string
+    +AcademicPosition : string
+    +RegisterTraining()
+    +ConductTraining()
+    +ApproveResult()
+    +ShowInfo()
+}
+
+class GeneralPerson{
+    +Workplace : string
+    +Position : string
+    +RegisterTraining()
+    +ConductTraining()
+    +ApproveResult()
+    +ShowInfo()
+}
+
+Person <|-- Student
+Person <|-- Teacher
+Person <|-- GeneralPerson
+
+IRegistrable <|.. Student
+IRegistrable <|.. Teacher
+IRegistrable <|.. GeneralPerson
+
+ISpeaker <|.. Teacher
+ISpeaker <|.. GeneralPerson
