@@ -12,6 +12,10 @@
 - แสดงรายชื่อวิทยากร
 
 
+
+## Class Diagram
+
+```mermaid
 classDiagram
 
 class Person{
@@ -28,47 +32,6 @@ class IRegistrable{
     +RegisterTraining()
 }
 
-class ISpeaker{
-    <<interface>>
-    +ConductTraining()
-    +ApproveResult()
-}
-
-class Student{
-    +StudentId : string
-    +Major : string
-    +RegisterTraining()
-    +ShowInfo()
-}
-
-class Teacher{
-    +Major : string
-    +AcademicPosition : string
-    +RegisterTraining()
-    +ConductTraining()
-    +ApproveResult()
-    +ShowInfo()
-}
-
-class GeneralPerson{
-    +Workplace : string
-    +Position : string
-    +RegisterTraining()
-    +ConductTraining()
-    +ApproveResult()
-    +ShowInfo()
-}
-
-Person <|-- Student
-Person <|-- Teacher
-Person <|-- GeneralPerson
-
-IRegistrable <|.. Student
-IRegistrable <|.. Teacher
-IRegistrable <|.. GeneralPerson
-
-ISpeaker <|.. Teacher
-ISpeaker <|.. GeneralPerson
 
 
 ## Class Description
