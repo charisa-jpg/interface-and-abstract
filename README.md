@@ -14,8 +14,10 @@
 
 - นักศึกษา อาจารย์ และบุคคลทั่วไป สามารถลงทะเบียนอบรมได้
 - อาจารย์ และบุคคลทั่วไป สามารถเป็นวิทยากรได้
-- วิทยากรสามารถอบรมและอนุมัติผลการอบรมได้
+- วิทยากรสามารถอบรมและอนุมัติผลการอบรมให้ผู้เข้าอบรมได้
 - แสดงรายชื่อผู้เข้าอบรมและวิทยากรได้
+
+ระบบออกแบบโดยใช้แนวคิด Object-Oriented Programming (OOP) ประกอบด้วย Abstract Class, Interface และ Class
 
 ---
 
@@ -44,6 +46,14 @@ class ISpeaker{
     +ApproveResult()
 }
 
+class AcademicRank{
+    <<enumeration>>
+    Lecturer
+    AssistantProfessor
+    AssociateProfessor
+    Professor
+}
+
 class Student{
     +StudentId : string
     +Major : string
@@ -53,7 +63,7 @@ class Student{
 
 class Teacher{
     +Major : string
-    +AcademicPosition : string
+    +AcademicPosition : AcademicRank
     +RegisterTraining()
     +ConductTraining()
     +ApproveResult()
